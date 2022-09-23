@@ -1,0 +1,92 @@
+.container {
+    margin-top: 16px;
+  }
+
+  html,
+  body {
+    font-size: 18px;
+    background-color: #D9F0F6;
+    font-family: 'Roboto', sans-serif;
+  }
+
+#changedWithJS {
+/*   -moz-user-select: none;  
+  -webkit-user-select: none;  
+  -ms-user-select: none;  
+  -o-user-select: none;  
+  user-select: none; */
+  white-space: pre-wrap;
+}
+
+
+ .form-control {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 8px 0px;
+    height: 5em;
+  }
+
+  button {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    background-color: #00a6d6;
+    border-radius: 5px;
+    padding: 6px 12px;
+    color: #fff;
+    width: 100px;
+    border: 1px solid #00a6d6;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .temperature_input {
+    width: 70%;
+  }
+
+  .input-label {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #00a6d6;
+  }
+
+  .loading {
+    display: none;
+    width: 200px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .loader {
+    border: 8px solid #fff;
+    border-radius: 10%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+
+  .resultText {
+    display: none;
+    background-color: #fff;
+    line-height: 1.5;
+    padding: 8px;
+  }
