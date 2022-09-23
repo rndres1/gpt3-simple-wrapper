@@ -13,7 +13,7 @@ const configuration = new Configuration({
 
 var AIRTABLE_TOKEN = process.env.AIRTABLE_AUTH_TOKEN
 const p_modelname = "text-davinci-002";
-//const p_temperature = 0.35;
+const p_temperature = 0.7;
 const p_maxtokens = 500;
 
 
@@ -31,15 +31,14 @@ exports.handler = async event => {
         }
     }
     if (event.body) {
-        s1 = event.body; //.replace(/\\n/g, "\\n");
-        //console.log(s1);
+        s1 = event.body;
         var ext_body = JSON.parse(s1);
-        //console.log(ext_body);
-        //console.log(ext_body.query);
         var user_query = ext_body.query; // the "query" field is defined in frontend
-        var user_temperature = parseFloat(ext_body.temperature);
+        //var user_temperature = parseFloat(ext_body.temperature);
+        var user_temperature = p_temperature; // removed the slider, constant temperature value
         var user_authtoken = ext_body.authToken;
     }
+   
 
     // moderation endpoint
    /*  mod_url = "https://api.openai.com/v1/moderations"

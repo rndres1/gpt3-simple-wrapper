@@ -15,7 +15,14 @@ function button1_function() {
   xhr.setRequestHeader("Accept", "application/json");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function () {
-    resultText.innerHTML = xhr.responseText;
+
+    if (xhr.status === 200) {
+      resultText.innerHTML = xhr.responseText;
+    } else {
+      resultText.innerHTML = "Sorry, GPT-3 took a long time to respond. Please try a different prompt.";
+    }
+
+    //resultText.innerHTML = xhr.responseText;
     resultText.style.display = "block";
     resultContainer.style.display = "block";
     loader.style.display = "none";
