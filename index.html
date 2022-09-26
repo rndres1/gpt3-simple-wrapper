@@ -18,41 +18,40 @@
 
 <body>
 
+
   <!-- Div to show login/auth page -->
-  <div id="authPage">
-    <div class="container">
-      <!-- Add request access link in href -->
-      <a href="mailto:dereklomas@gmail.com" class="request-access-container">
-        <div class="request-access-text-container">Request Access</div>
-      </a>
-      <div class="image-container"></div>
-      <div class="title-text">AI Writing Helper</div>
-      <div class="subtitle-text">Making writing fun and easy</div>
-      <form name="authPrompt" method="POST" id="authForm" action="">
-        <div class="auth-container">
-          <div class="auth-input-container">
-            <label class="input-label" for="passcode">Enter Passcode:</label>
-            <input placeholder="XXXXX" id="passcode" oninput="onPasscodeInputChange()"> </input>
-          </div>
-          <button disabled="true" onclick="validatePasscode()" type="button" id="authSubmitButton">
-            <span id="authLoader" class="spinner-border spinner-border-sm" role="status"
-              style="vertical-align: middle; display: none" aria-hidden="true"></span>
-            <span id="authButtonText" style="display: inline-block">Submit</span>
-          </button>
+  <div class="auth-page-container" id="authPage">
+    <!-- Add request access link in href -->
+    <a href="mailto:dereklomas@gmail.com" class="request-access-container">
+      <div class="request-access-text-container">Request Access</div>
+    </a>
+    <div class="image-container"></div>
+    <div class="title-text">AI Writing Helper</div>
+    <div class="subtitle-text">Making writing fun and easy</div>
+    <form name="authPrompt" method="POST" id="authForm" action="">
+      <div class="auth-container">
+        <div class="auth-input-container">
+          <label class="input-label" for="passcode">Enter Passcode:</label>
+          <input placeholder="XXXXX" id="passcode" oninput="onPasscodeInputChange()"> </input>
         </div>
-      </form>
-    </div>
+        <button disabled="true" onclick="validatePasscode()" type="button" id="authSubmitButton">
+          <span id="authLoader" class="spinner-border spinner-border-sm" role="status"
+            style="vertical-align: middle; display: none" aria-hidden="true"></span>
+          <span id="authButtonText" style="display: inline-block">Submit</span>
+        </button>
+      </div>
+    </form>
   </div>
 
   <!-- Div to show prompt page -->
   <div id="promptPage">
     <form name="input_prompt" method="POST" id="form1" action="">
-      <div class="container prompt-container">
+      <div class="prompt-container">
         <div class="label-container">
-          <label class="input-label" for="text1">What would you like to write about?</label>
-          <div class="prompt-guide-label" onclick="showPrompt()">
+          <label class="prompt-label" for="text1">What would you like to write about?</label>
+          <div class="prompt-guide-container" onclick="showPrompt()">
             <div class="icon-container"><i class="bi bi-book"></i></div>
-            <label class="prompt-label">Prompt Guide</label>
+            <label class="prompt-guide-label">Prompt Guide</label>
           </div>
         </div>
         <textarea placeholder="The city of Amsterdam" rows="4" class="form-control" oninput="onInputChange()"
@@ -64,7 +63,7 @@
         </button>
       </div>
     </form>
-    <div class="container prompt-container" id="resultContainer">
+    <div class="prompt-container" id="resultContainer">
       <div id="resultTitle">Result:</div>
       <div id="resultText"></div>
     </div>
@@ -97,8 +96,11 @@
               Here are a few suggestions to generate useful and compelling pieces of text with GPT-3:
               <br><br>
               1. Use verbs in the beginning such as "compose", "draft", "write", "discuss" etc. <br>
-              2. Use a detailed description of what you want to write, e.g. the importance of sunlight in photosynthesis. <br>
-              3. GPT-3 sometimes acts like a very advanced autocomplete. This is useful if you want answers in a specific format, such as a list. You can explicitly provide the beginning of an answer. For instance, you can ask <br>
+              2. Use a detailed description of what you want to write, e.g. the importance of sunlight in
+              photosynthesis. <br>
+              3. GPT-3 sometimes acts like a very advanced autocomplete. This is useful if you want answers in a
+              specific format, such as a list. You can explicitly provide the beginning of an answer. For instance, you
+              can ask <br>
               "List the elements that are relevant for photosynthesis, and explain the importance of each. <br> 1." <br>
               4. If you are trying to generate code, specify the programming language. <br>
 

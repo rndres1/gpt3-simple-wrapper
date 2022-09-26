@@ -50,9 +50,9 @@ button:focus {
     -ms-user-select: none;  
     -o-user-select: none;  
     user-select: none; */
-    white-space: pre-wrap;
-  }
-  
+  white-space: pre-wrap;
+}
+
 
 @keyframes spin {
   0% {
@@ -72,6 +72,11 @@ a:hover {
 
 #authPage {
   display: block;
+}
+
+.auth-page-container {
+  max-width: 1024px;
+  margin: auto;
 }
 
 .request-access-container {
@@ -177,24 +182,36 @@ a:hover {
 
 .prompt-container {
   margin-top: 32px;
+  margin-inline: auto;
+  max-width: 1048px;
   background: #fff;
   border-radius: 4px;
-  width: 100%;
   padding: 24px 36px;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.16), -2px 2px 4px 0 rgba(0, 0, 0, 0.16);
 }
 
-#resultText {
-  /* white-space: pre-wrap; */
+.prompt-label {
+  font-weight: bold;
+  flex: 5;
+  font-size: 26px;
+  line-height: 30px;
+  color: #000;
+  font-family: "CabinetGrotesk";
 }
 
-.prompt-guide-label {
+.prompt-guide-container {
   display: flex;
+  flex: 3;
+  justify-content: right;
   font-size: 16px;
   color: #7D4AD4;
   font-family: "Nunito";
   font-weight: bold;
 }
+
+
+
+
 
 .label-container {
   display: flex;
@@ -260,7 +277,7 @@ a:hover {
 }
 
 .prompt-text-container {
-  max-width: 80%;
+  max-width: 1024px;
   padding: 0px;
   margin: auto;
 }
@@ -276,7 +293,7 @@ a:hover {
   line-height: 1.5;
 }
 
-.prompt-label {
+.prompt-guide-label {
   margin-bottom: 0px;
 }
 
@@ -284,6 +301,8 @@ a:hover {
   font-family: "Nunito Italic";
   font-size: 17px;
 }
+
+
 
 @font-face {
   font-family: "CabinetGrotesk";
@@ -300,14 +319,25 @@ a:hover {
   src: url("./fonts/Nunito-Italic.ttf");
 }
 
-@media screen and (max-width: 576px) {
-  .prompt-container {
-    width: 80%;
+@media screen and (max-width: 1045px) {
+  .auth-container {
+    width: auto;
   }
 
-  .label-container {
-    align-items: center;
+  .prompt-container {
+    margin-inline: 8px;
   }
+
+  .auth-page-container {
+    margin-inline: 8px;
+  }
+
+  .prompt-text-container {
+    margin-inline: 16px;
+  }
+}
+
+@media screen and (max-width: 720px) {
 
   .auth-container {
     flex-direction: column;
@@ -331,8 +361,25 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 320px) {
-  button {
-    width: 80%;
+
+@media screen and (max-width: 480px) {
+  .prompt-container {
+    padding: 16px 8px;
+  }
+
+  .prompt-label {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .prompt-guide-container {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .prompt-label {
+    font-size: 22px;
+    line-height: 24px;
   }
 }
