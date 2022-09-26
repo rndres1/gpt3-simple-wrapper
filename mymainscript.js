@@ -1,10 +1,22 @@
 // Function to get response
+
+window.onload = () => {
+  let element = document.getElementById("passcode");
+  element.addEventListener('keypress', function (event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      validatePasscode();
+    }
+  });
+}
+
+
+
 function button1_function() {
   let loader = document.getElementById("loader");
   let buttonText = document.getElementById("buttonText");
   let resultText = document.getElementById("resultText");
   let resultContainer = document.getElementById("resultContainer");
-
   resultText.style.display = "none";
   resultContainer.style.display = "none";
   loader.style.display = "inline-block";
