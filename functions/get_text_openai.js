@@ -40,26 +40,6 @@ exports.handler = async event => {
     }
    
 
-    // moderation endpoint
-   /*  mod_url = "https://api.openai.com/v1/moderations"
-    const mod_headers = {
-        'Content-Type': `application/json`,
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-    }
-    mod_data = `{"input": ${JSON.stringify(user_query)}}`;
-    axios.post(mod_url, mod_data, {
-        headers: mod_headers
-      })
-      .then((res) => {
-        //console.log("RESPONSE RECEIVED: ", res);
-        fs.writeFileSync('moderation_API_response.json', stringify(res));
-      })
-      .catch((err) => {
-        console.log("AXIOS ERROR: ", err);
-      }) */
-
-
-
     const openai = new OpenAIApi(configuration);
 
     var api_response = await openai.createCompletion({
@@ -68,13 +48,48 @@ exports.handler = async event => {
         max_tokens: p_maxtokens,
         temperature: user_temperature
     });
-    //console.log(api_response.data.choices[0].text);    
+  
+
+
+     // moderation check
+     mod_url = "https://api.openai.com/v1/moderations"
+     mod_headers = {'Content-Type': `application/json`,'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`}
+     mod_data = `{"input": ${JSON.stringify(user_query + api_response.data.choices[0].text)}}`;
+     
+     const mod_response = await axios.post(mod_url, mod_data, {headers: mod_headers})
+     jsonString = stringify(mod_response);
+     var verdict;
+      jobj = parse(jsonString);
+      cat = jobj.data.results[0].categories;
+      cat_bool = [];
+      for(var i in cat)
+          cat_bool.push(cat[i]);
+      verdict = cat_bool.reduce((a, b) => a || b, false)
+      if (!verdict)   
+      {
+          console.log("verdict: can return this text");    
+          returnText = api_response.data.choices[0].text;
+      }
+      else
+       {   
+          console.log("verdict: blocked this text");
+          returnText = "Sorry, this generated text has been blocked by the content moderation system. Please try a different prompt."
+       }
+
+    /*  await axios.post(mod_url, mod_data, {headers: mod_headers})
+       .then((res) => {
+         console.log("RESPONSE RECEIVED: ");
+         fs.writeFileSync('moderation_response_' + Math.ceil(Math.random()*10000).toString() + '_.json', stringify(res));
+       })
+       .catch((err) => {
+         //console.log("AXIOS ERROR", err);
+         console.log("ERROR in moderation request")
+       }) */
 
     // =========== save the text to Airtable base "" =======
 
     var base = new Airtable({apiKey: AIRTABLE_TOKEN}).base('app4q2AV24FrpSm2g'); 
     var table = base('GPT3_davinci_');
-
     var newData = [
         {
             "fields": {
@@ -86,22 +101,22 @@ exports.handler = async event => {
         }
     ]
     console.log(newData);
-
     await table.create(newData, {typecast: true}, function(err, records) {
         if (err) {
           console.error(err);
           return;
         }
         records.forEach(function (record) {
-          console.log(record.getId());
+          console.log("Airtable record " + record.getId() + " created");
         });
       });
-
-    await sleep(100); // workaround for the Airtable nowrite problem -- DO NOT DELETE
- 
+    
+      await sleep(100); // workaround for the Airtable nowrite problem -- DO NOT DELETE 
+    
+    
+      
     return {
         statusCode: 200,
-        body: api_response.data.choices[0].text
-        //body: "UNCOMMENT THE CODE"
+        body: returnText
     }
 }
