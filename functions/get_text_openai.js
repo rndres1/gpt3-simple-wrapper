@@ -14,7 +14,7 @@ const configuration = new Configuration({
 var AIRTABLE_TOKEN = process.env.AIRTABLE_AUTH_TOKEN
 const p_modelname = "text-davinci-002";
 const p_temperature = 0.7;
-const p_maxtokens = 500;
+const p_maxtokens = 256;
 
 
 function sleep(ms) {
