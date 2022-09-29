@@ -1,4 +1,24 @@
-var allowed_tokens = ['hcd', 'ide', 'tud', 'ams', 'test', 'booster', 'derek', 'milo', 'mia', 'julika', 'erik', 'willem', 'caiseal', 'pj', 'aadjan', 'iaonnis', 'jmck', 'vcow4', 'xrxjl', 'bxteu'];
+var allowed_tokens = ['hcd', 'ide', 'tud', 'ams', 'test', 'booster', 'derek', 'milo', 'mia', 'julika', 'erik', 'willem', 'caiseal', 'pj', 'aadjan', 'iaonnis', 
+    'BxTEu',
+    'Hfyrz',
+    'rBxGp',
+    'm6j0X',
+    'VcOW4',
+    'Eh73H',
+    'pDrkC',
+    'qDQgg',
+    'gjc3b',
+    'XrXJl',
+    'Ku8Je',
+    'I0FI8',
+    'F9EVy',
+    'G6fmN',
+    'NBLkl',
+    'tUTvv',
+    'u41BS',
+    '6wpUo',
+    'H6JAF',
+    'AqQ8Z'];
 
 
 exports.handler = async event => {
